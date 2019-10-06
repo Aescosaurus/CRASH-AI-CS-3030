@@ -9,6 +9,7 @@
 
 	Game window must be placed in the top left corner of the screen for this to application to function correctly.
 """
+import os
 import numpy as np
 from PIL import ImageGrab
 import cv2
@@ -21,32 +22,24 @@ def find_objects(img_bgr):
 	# Convert the brg formatted picture to gray scale to simplify pixel identification.
 	img_gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
 
-	# List of jpeg names to create templates from (multiple images are used to increase the accuracy of finding the images.)
-	template_images = ['Images/Monster.jpg',
-					   'Images/Monster1.jpg',
-					   'Images/Monster2.jpg',
-					   'Images/Monster3.jpg',
-					   'Images/Player1.jpg',
-					   'Images/Player2.jpg',
-					   'Images/Player3.jpg',
-					   'Images/Player4.jpg']
 
-	# For each image supplied, create a template, set a threshold for that template, and draw a green rectangle
+	# For each image in the images folder, create a template, set a threshold for that template, and draw a green rectangle
 	# around each object found.
-	for image in template_images:
-		template = cv2.imread(image,0)
-		w, h = template.shape[::-1]
+	for r, d, f in os.walk('.'):
+		for file in f:
+			if '.jpg' in file:
+				file = os.path.join(r, file)
+				template = cv2.imread(file, 0)
+				w, h = template.shape[::-1]
 
-		res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
-		threshold = 0.6
-		if 'Player' in image:
-			threshold = .65
-		loc = np.where( res >= threshold)
+				res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
+				threshold = 0.6
+				if 'Player' in file:
+					threshold = .65
+				loc = np.where( res >= threshold)
 
-		for pt in zip(*loc[::-1]):
-			cv2.rectangle(img_bgr, pt, (pt[0] + w, pt[1] + h), (0,255,0), 2)
-
-	# 
+				for pt in zip(*loc[::-1]):
+					cv2.rectangle(img_bgr, pt, (pt[0] + w, pt[1] + h), (0,255,0), 2)
 
 
 def screen_record(): 
