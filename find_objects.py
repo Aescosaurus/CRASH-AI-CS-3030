@@ -22,14 +22,14 @@ def find_objects(img_bgr):
 	img_gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
 
 	# List of jpeg names to create templates from (multiple images are used to increase the accuracy of finding the images.)
-	template_images = ['Monster.jpg',
-					   'Monster1.jpg',
-					   'Monster2.jpg',
-					   'Monster3.jpg',
-					   'Player1.jpg',
-					   'Player2.jpg',
-					   'Player3.jpg',
-					   'Player4.jpg']
+	template_images = ['Images/Monster.jpg',
+					   'Images/Monster1.jpg',
+					   'Images/Monster2.jpg',
+					   'Images/Monster3.jpg',
+					   'Images/Player1.jpg',
+					   'Images/Player2.jpg',
+					   'Images/Player3.jpg',
+					   'Images/Player4.jpg']
 
 	# For each image supplied, create a template, set a threshold for that template, and draw a green rectangle
 	# around each object found.
