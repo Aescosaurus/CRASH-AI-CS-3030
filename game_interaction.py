@@ -1,10 +1,10 @@
 import win32gui
 import win32api
 import win32con
-import rect
+from rect import rect_t
 
 def get_window_info():
-    
+    details = rect_t( 0,0,0,0 )
     def callback( hWnd,extra ):
         rect = win32gui.GetWindowRect( hWnd )
         x = rect[0]
@@ -12,8 +12,10 @@ def get_window_info():
         w = rect[2] - x
         h = rect[3] - y
         if win32gui.GetWindowText( hWnd ) == "Cave Runner Actual Sharp Hustle":
-            extra.append( ( x,y ) )
-            extra.append( ( w,h ) )
+            extra.left = x
+            extra.top = y
+            extra.right = x + w
+            extra.bot = y + h
 
     win32gui.EnumWindows( callback,details )
 

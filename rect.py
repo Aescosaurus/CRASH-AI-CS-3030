@@ -4,3 +4,9 @@ class rect_t:
         self.right = right
         self.top = top
         self.bot = bot
+
+    def __str__( self ):
+        return( str( self.left ) + " " +
+               str( self.right ) + " " +
+               str( self.top ) + " " +
+               str( self.bot ) )
