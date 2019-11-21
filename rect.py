@@ -5,7 +5,7 @@ class rect_t:
         self.top = top
         self.bot = bot
 
-    def __str__( self ):
+    def __str__(self):
         detail_string = "{} {} {} {}".format(self.left,
                                              self.right,
                                              self.top,
