@@ -4,7 +4,6 @@ import win32con
 from rect import rect_t
 import time
 from pynput.keyboard import Controller
-import threading
 
 def focus_window( name ):
     def check_window_enums( hWnd,name ):
@@ -46,8 +45,10 @@ def press_key( key ):
     press_key.kbd.press( key )
     press_key.kbd.release( key )
 
+"""
 window_rect = get_window_info()
 focus_window( "Cave Runner Actual Sharp Hustle" )
 time.sleep( 1 )
 click_start()
 print( "done" )
+"""
