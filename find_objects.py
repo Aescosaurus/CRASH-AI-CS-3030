@@ -42,10 +42,11 @@ def find_objects(img_bgr):
 
 	# For each image in the images folder, create a template, set a threshold for that template, and draw a green rectangle
 	# around each object found.
-	for r, d, f in os.walk('.'):
-		for file in f:
-			if '.JPG' in file:
-				file = os.path.join(r, file)
+	for rootdir, dirs, files in os.walk(root):
+		for file in files:
+			if '.JPG' in file or '.jpg' in file:
+				file = os.path.join(rootdir, file)
+				print(file)
 				template = cv2.imread(file, 0)
 				w, h = template.shape[::-1]
 
@@ -80,14 +81,14 @@ def screen_record():
 		# Determines what screen to print (ImageGrab.grab(bbox=(0,40,800,640))) for custom bounds.
 		if aspect_ratio_x == 4 and aspect_ratio_y == 3:
 			capture_window_positions = {'top_left_x': 0,
-										'top_left_y': 30,
+										'top_left_y': 0,
 										'bottom_right_x': 960,
 										'bottom_right_y': 510,}
 		else:
 			capture_window_positions = {'top_left_x': 0,
-										'top_left_y': 30,
-										'bottom_right_x': 1473,
-										'bottom_right_y': 767,}
+										'top_left_y': 0,
+										'bottom_right_x': 976,
+										'bottom_right_y': 519,}
 
 		printscreen =  np.array(ImageGrab.grab(bbox = 
 											  (capture_window_positions['top_left_x'],
@@ -97,7 +98,7 @@ def screen_record():
 
 		# Process the image and find objects
 		object_type, object_location= find_objects(printscreen)
-		print(object_type, object_location)
+		# print(object_type, object_location)
 
 		# cv2.imshow displays the image of window name, 'window' and the image coming from printscreen.
 		window_name = 'window'
@@ -110,4 +111,5 @@ def screen_record():
 			break
 
 # Start displaying the screen.
-screen_record()
+if __name__ =='__main__':
+	screen_record()
