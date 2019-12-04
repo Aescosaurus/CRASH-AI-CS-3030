@@ -2,12 +2,17 @@
 Final Project
 
 Michael Buslik
+
 Jacob Quatkemeyer
+
 Rob Standifer
 
 Corse: CS 3030-001
+
 Instructor: Damia Fuentes Escote
+
 Due Date: December 15, 2019
+
 
 Project Description:
 
@@ -78,9 +83,14 @@ cave (stalagtites).
 The actions required to avoid these obstacles are simple, and consist of 
 jumping and dashing, and provide three basic options:
 
-  1.) A jump is required to clear short obstacles.
+  1.) A jump is used to avoid obstacles in the player's path.
+      * A jump may be performed whenever tha player is toucing the ground.
   
-  2.) A dash is required to defeat a monster or teleport through an obstacle.
+  2.) A dash is used to defeat a monster or teleport through an obstacle.
+      * A dash has a ~1 second cooldown before it can be used again.
+ 
+ 
+ 
   
   
   
