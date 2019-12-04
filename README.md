@@ -80,10 +80,8 @@ jumping and dashing, and provide three basic options:
 
   1.) A jump is required to clear short obstacles.
   
-  2.) A dash is required to defeat a monster.
+  2.) A dash is required to defeat a monster or teleport through an obstacle.
   
-  3.) A dashing jump is required to clear longer obstacles, or to defeat a 
-  monster while jumping at the same time.
   
   
 
