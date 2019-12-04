@@ -93,6 +93,10 @@ jumping and dashing, and provide three basic options:
  
   
   
+  To Do:
+  
+  AI starts its own timer to record success of the run
+  write three distinct AI algorithms
   
 
 
