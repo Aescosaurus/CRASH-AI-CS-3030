@@ -34,18 +34,26 @@ def get_window_info():
 
 
 def get_pixel( x,y ):
-	new_pos = local_to_global( vec2_t( x,y ) )
-	x = new_pos.x
-	y = new_pos.y
-	
 	desktop_window = win32gui.GetDesktopWindow()
 	window_dc = win32gui.GetWindowDC( desktop_window )
 	color = int( win32gui.GetPixel( window_dc,x,y ) )
 	
-	return (color_t
-			( (color & 0xFF),  # Red
-			  ((color >> 8) & 0xFF),  # Green
-			  ((color >> 16) & 0xFF) ))  # Blue
+	return( color_t
+		( ( color & 0xFF ),  # Red
+		( ( color >> 8 ) & 0xFF ),  # Green
+		( ( color >> 16 ) & 0xFF ) ) )  # Blue
+
+def get_pixel_arr():
+	desktop_window = win32gui.GetDesktopWindow()
+	window_dc = win32gui.GetWindowDC( desktop_window )
+	window_rect = get_window_info()
+	
+	# color = int( win32gui.GetPixel( window_dc,x,y ) )
+	
+	return( color_t
+		( ( color & 0xFF ),  # Red
+		( ( color >> 8 ) & 0xFF ),  # Green
+		( ( color >> 16 ) & 0xFF ) ) )  # Blue
 
 
 def click_at( x,y ):
