@@ -8,6 +8,6 @@ def start():
 	game.focus_window( window_name )
 	time.sleep( 0.5 )
 	game.click_start()
-	obj_finder.find_player()
+	print( obj_finder.find_player() )
 
 start()

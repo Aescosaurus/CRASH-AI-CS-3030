@@ -9,8 +9,8 @@ class color_t:
 				str( self.g ) + " " +
 				str( self.b ))
 
-
-def equals( self,other ):
-	return (self.r == other.r and
-			self.g == other.g and
-			self.b == other.b)
+	def equals( self,other ):
+		return( self.r == other.r and self.g == other.g and self.b == other.b )
+	
+	def not_equal( self,other ):
+		return( self.r != other.r or self.g != other.g or self.b != other.b )

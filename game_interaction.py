@@ -34,21 +34,13 @@ def get_window_info():
 
 
 def get_pixel( x,y ):
+	pos = local_to_global( vec2_t( x,y ) )
+	x = pos.x
+	y = pos.y
+	
 	desktop_window = win32gui.GetDesktopWindow()
 	window_dc = win32gui.GetWindowDC( desktop_window )
 	color = int( win32gui.GetPixel( window_dc,x,y ) )
-	
-	return( color_t
-		( ( color & 0xFF ),  # Red
-		( ( color >> 8 ) & 0xFF ),  # Green
-		( ( color >> 16 ) & 0xFF ) ) )  # Blue
-
-def get_pixel_arr():
-	desktop_window = win32gui.GetDesktopWindow()
-	window_dc = win32gui.GetWindowDC( desktop_window )
-	window_rect = get_window_info()
-	
-	# color = int( win32gui.GetPixel( window_dc,x,y ) )
 	
 	return( color_t
 		( ( color & 0xFF ),  # Red
@@ -87,6 +79,9 @@ def local_to_global( vec2 ):
 	local_to_global.window_rect = get_window_info()
 	x = vec2.x + local_to_global.window_rect.left
 	y = vec2.y + local_to_global.window_rect.top
+	# Dumb window top left stuff.
+	x += 8
+	y += 31
 	return (vec2_t( x,y ))
 
 
