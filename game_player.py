@@ -2,10 +2,10 @@ import game_interaction as game
 import time
 import object_finder as obj_finder
 import threading
-import ai_alpha_1
+import ai_beta
 
 window_name = "Cave Runner Actual Sharp Hustle"
-ai1 = ai_alpha_1.ai_alpha_1()
+ai = ai_beta.ai_beta()
 
 def start():
 	# print( game.get_window_info() )
@@ -13,7 +13,7 @@ def start():
 	time.sleep( 0.5 )
 	game.click_start()
 
-	ai1.ai_start()
+	ai.ai_start()
 
 	start_time = time.perf_counter()
 	time.sleep( 0.5 )
@@ -32,9 +32,29 @@ def update( dt ):
 		args = [ 1.0 / 12.0 ] )
 	thread.start()
 	
-	ai1.ai_step( dt )
+	pixels = obj_finder.find_everything()
+	try:
+		ai.ai_step( pixels,dt )
+	except:
+		pass
 
 	thread.join()
-	return( True )
+
+	if pixels[0][0] == obj_finder.StateAlive:
+		return( True )
+	else:
+		return( False )
 
 print( start() )
+# times = []
+# for i in range( 100 ):
+# 	times.append( start() )
+# 
+# text = ""
+# for t in times:
+# 	text += str( t )
+# 	text += '\n'
+# 
+# file = open( "Data/AiAlpha.txt",'w' )
+# file.write( text )
+# file.close()

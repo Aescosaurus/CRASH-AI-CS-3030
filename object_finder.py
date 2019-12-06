@@ -29,11 +29,8 @@ def match_color( col ):
 			return( i )
 	return( 0 )
 
-def check_state():
-	return( match_color( game.get_pixel( 0,320 ) ) )
-
 def find_everything():
-	t = time.perf_counter()
+	# t = time.perf_counter()
 	image = ImageGrab.grab().load()
 	window = game.get_window_info()
 	color_arr = []
@@ -46,3 +43,10 @@ def find_everything():
 			color_arr[y].append( emplace_back )
 	# print( time.perf_counter() - t )
 	return( color_arr )
+
+def find_player( colors ):
+	for y in range( len( colors ) ):
+		for x in range( len( colors[y] ) ):
+			if colors[y][x] == TilePlayer:
+				return( vec2_t( x,y ) )
+	return( vec2_t( -1,-1 ) )
