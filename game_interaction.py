@@ -38,10 +38,11 @@ def get_window_info():
 			# extra.top = rect[1]
 			# extra.right = rect[2]
 			# extra.bot = rect[3]
-			extra.left = crect.left + 1
-			extra.top = crect.top + 1 + 30
-			extra.right = crect.right - 1
-			extra.bot = crect.bottom - 1
+			if crect.left >= 0:
+				extra.left = crect.left + 1
+				extra.top = crect.top + 1 + 30
+				extra.right = crect.right - 1
+				extra.bot = crect.bottom - 1
 	
 	win32gui.EnumWindows( callback,details )
 	
