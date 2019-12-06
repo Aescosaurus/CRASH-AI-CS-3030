@@ -85,7 +85,14 @@ def press_key( key ):
 	press_key.kbd = Controller()
 	
 	press_key.kbd.press( key )
+	time.sleep( 1.0 / 60.0 )
 	press_key.kbd.release( key )
+
+def press_jump():
+	press_key( 'w' )
+
+def press_dash():
+	press_key( 'd' )
 
 def local_to_global( vec2 ):
 	local_to_global.window_rect = get_window_info()

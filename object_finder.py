@@ -2,6 +2,7 @@ import game_interaction as game
 from color import color_t
 from vec2 import vec2_t
 from PIL import ImageGrab
+import time
 
 StateAlive = 5
 StateDead = 3
@@ -32,6 +33,7 @@ def check_state():
 	return( match_color( game.get_pixel( 0,320 ) ) )
 
 def find_everything():
+	t = time.perf_counter()
 	image = ImageGrab.grab().load()
 	window = game.get_window_info()
 	color_arr = []
@@ -42,4 +44,5 @@ def find_everything():
 			col = image[x + window.left,y + window.top + 320]
 			emplace_back = match_color( color_t( col[0],col[1],col[2] ) )
 			color_arr[y].append( emplace_back )
+	# print( time.perf_counter() - t )
 	return( color_arr )
