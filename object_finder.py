@@ -52,3 +52,15 @@ def find_player( colors ):
 			if colors[y][x] == TilePlayer:
 				return( vec2_t( x,y ) )
 	return( vec2_t( -1,-1 ) )
+
+def find_explosion( colors ):
+	for y in range( len( colors ) ):
+		for x in range( len( colors[y] ) ):
+			if colors[y][x] == TileExplode:
+				return( vec2_t( x,y ) )
+	return( vec2_t( -1,-1 ) )
+
+def get_tile( pixels,x,y ):
+	if x < 0 or x >= 30 or y < 0 or y >= 10:
+		return( TileEmpty )
+	return( pixels[y][x] )

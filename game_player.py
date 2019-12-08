@@ -10,13 +10,14 @@ ai = ai_gamma.ai_gamma()
 def start():
 	# print( game.get_window_info() )
 	game.focus_window( window_name )
-	time.sleep( 0.5 )
+	time.sleep( 0.2 )
+	game.click_start()
 	game.click_start()
 
 	ai.ai_start()
 
 	start_time = time.perf_counter()
-	time.sleep( 0.5 )
+	time.sleep( 0.2 )
 	dt_start = time.perf_counter()
 	dt = 0.0
 	while update( dt ):
@@ -33,10 +34,11 @@ def update( dt ):
 	thread.start()
 	
 	pixels = obj_finder.find_everything()
-	try:
-		ai.ai_step( pixels,dt )
-	except:
-		pass
+	# try:
+	# 	ai.ai_step( pixels,dt )
+	# except:
+	# 	pass
+	ai.ai_step( pixels,dt )
 
 	thread.join()
 
@@ -46,7 +48,7 @@ def update( dt ):
 		ai.ai_lose()
 		return( False )
 
-for i in range( 50 ):
+for i in range( 500 ):
 	print( start() )
 # times = []
 # for i in range( 100 ):
