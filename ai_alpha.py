@@ -2,6 +2,8 @@ import game_interaction as game
 import object_finder as obj_finder
 import time
 
+# Basic hardcoded ai, is quite dull and performs about as
+#  well as a below average player.
 class ai_alpha:
 	def ai_start( self ):
 		self.timer = 0.0
@@ -18,4 +20,7 @@ class ai_alpha:
 		if tilemap[player_pos.y + 1][player_pos.x + 1] == obj_finder.TileEmpty or \
 			tilemap[player_pos.y + 1][player_pos.x + 3] == obj_finder.TileEmpty:
 			game.press_jump()
+		pass
+
+	def ai_lose( self ):
 		pass

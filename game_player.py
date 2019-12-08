@@ -2,10 +2,10 @@ import game_interaction as game
 import time
 import object_finder as obj_finder
 import threading
-import ai_beta
+import ai_gamma
 
 window_name = "Cave Runner Actual Sharp Hustle"
-ai = ai_beta.ai_beta()
+ai = ai_gamma.ai_gamma()
 
 def start():
 	# print( game.get_window_info() )
@@ -43,9 +43,11 @@ def update( dt ):
 	if pixels[0][0] == obj_finder.StateAlive:
 		return( True )
 	else:
+		ai.ai_lose()
 		return( False )
 
-print( start() )
+for i in range( 50 ):
+	print( start() )
 # times = []
 # for i in range( 100 ):
 # 	times.append( start() )
