@@ -50,5 +50,10 @@ class ai_gamma:
 		pass
 
 	def ai_lose( self ):
-		# print( self.q_table )
+		file = open( "Data/AiGammaQTable.txt",'w' )
+		for i in self.q_table:
+			for j in i:
+				file.write( str( j ) + ' ' )
+			file.write( '\n' )
+		file.close()
 		pass

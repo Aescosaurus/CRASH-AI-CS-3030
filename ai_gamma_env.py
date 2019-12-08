@@ -8,25 +8,25 @@ class env:
 
 	def step( self,action,tilemap ):
 		player_pos = obj_finder.find_player( tilemap )
-		# for y in range( player_pos.y - 1,player_pos.y + 2 ):
-		# 	for x in range( player_pos.x + 1,player_pos.x + 4 ):
-		# 		self.data[y * 2 + x] = ( tilemap[y][x] == TileEmpty ) if 0 else 1
-		data = []
-		for y in range( player_pos.y - 1,player_pos.y + 1 ):
+
+		self.data = []
+		for y in range( player_pos.y - 1,player_pos.y + 2 ):
 			for x in range( player_pos.x + 1,player_pos.x + 3 ):
-				data.append( ( x,y ) )
-		print( data )
+				if tilemap[y][x] == obj_finder.TileEmpty:
+					self.data.append( 0 )
+				else:
+					self.data.append( 1 )
 
 		reward = 0
 		done = False
 		if tilemap[0][0] == obj_finder.StateDead:
-			reward -= 10
+			reward -= 50
 			done = True
 		else:
 			reward += 1
 
 		if action == 0:
-			# Reward here maybe?
+			# Perhaps give reward here?
 			pass
 		elif action == 1:
 			game.press_jump()

@@ -12,6 +12,7 @@ TileWall = 1
 TileSpike = 2
 TileEnemy = 3
 TilePlayer = 4
+TileExplode = 6
 
 colors = \
 	[
@@ -21,6 +22,7 @@ colors = \
 		color_t( 255,0,0 ), # Enemy/Dead
 		color_t( 0,0,255 ), # Player
 		color_t( 0,255,0 ), # Alive
+		color_t( 0,255,255 ), # Enemy explode
 	]
 
 def match_color( col ):
