@@ -1,3 +1,4 @@
+"""Docstring..."""
 import game_interaction as game
 from color import color_t
 from vec2 import vec2_t
@@ -16,20 +17,21 @@ TileExplode = 6
 
 colors = \
 	[
-		color_t( 128,128,128 ), # Empty
-		color_t( 255,255,0 ), # Wall
-		color_t( 211,211,211 ), # Spike
-		color_t( 255,0,0 ), # Enemy/Dead
-		color_t( 0,0,255 ), # Player
-		color_t( 0,255,0 ), # Alive
-		color_t( 0,255,255 ), # Enemy explode
+		color_t(128 ,128 ,128), # Empty
+		color_t(255, 255 , 0), # Wall
+		color_t(211, 211, 211), # Spike
+		color_t(255, 0, 0), # Enemy/Dead
+		color_t(0, 0, 255), # Player
+		color_t(0, 255, 0), # Alive
+		color_t(0, 255, 255), # Enemy explode
 	]
 
-def match_color( col ):
-	for i in range( len( colors ) ):
-		if colors[i].equals( col ):
-			return( i )
-	return( 0 )
+def match_color(col):
+	"""Docstring..."""
+	for i in range(len(colors)):
+		if colors[i].equals(col):
+			return(i)
+	return(0)
 
 def find_everything():
 	# t = time.perf_counter()
@@ -37,30 +39,33 @@ def find_everything():
 	window = game.get_window_info()
 	color_arr = []
 
-	for y in range( 0,10 ):
-		color_arr.append( [] )
-		for x in range( 0,30 ):
+	for y in range(0, 10):
+		color_arr.append([])
+		for x in range(0, 30):
 			col = image[x + window.left,y + window.top + 320]
-			emplace_back = match_color( color_t( col[0],col[1],col[2] ) )
-			color_arr[y].append( emplace_back )
-	# print( time.perf_counter() - t )
-	return( color_arr )
+			emplace_back = match_color(color_t(col[0], col[1], col[2]))
+			color_arr[y].append(emplace_back)
+	# print(time.perf_counter() - t)
+	return(color_arr)
 
-def find_player( colors ):
-	for y in range( len( colors ) ):
-		for x in range( len( colors[y] ) ):
+def find_player(colors):
+	"""Docstring..."""
+	for y in range(len(colors)):
+		for x in range(len(colors[y])):
 			if colors[y][x] == TilePlayer:
-				return( vec2_t( x,y ) )
-	return( vec2_t( -1,-1 ) )
+				return(vec2_t(x, y))
+	return( vec2_t(-1, -1))
 
-def find_explosion( colors ):
-	for y in range( len( colors ) ):
-		for x in range( len( colors[y] ) ):
+def find_explosion(colors):
+	"""Docstring..."""
+	for y in range(len(colors)):
+		for x in range(len(colors[y])):
 			if colors[y][x] == TileExplode:
-				return( vec2_t( x,y ) )
-	return( vec2_t( -1,-1 ) )
+				return(vec2_t(x, y))
+	return(vec2_t(-1, -1))
 
-def get_tile( pixels,x,y ):
+def get_tile(pixels, x ,y):
+	"""Docstring..."""
 	if x < 0 or x >= 30 or y < 0 or y >= 10:
-		return( TileEmpty )
-	return( pixels[y][x] )
+		return(TileEmpty)
+	return(pixels[y][x])
