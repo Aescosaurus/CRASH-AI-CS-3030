@@ -54,7 +54,7 @@ def find_player(colors):
 		for x in range(len(colors[y])):
 			if colors[y][x] == TilePlayer:
 				return(vec2_t(x, y))
-	return( vec2_t(-1, -1))
+	return(vec2_t(-1, -1))
 
 def find_explosion(colors):
 	"""Docstring..."""
@@ -64,7 +64,7 @@ def find_explosion(colors):
 				return(vec2_t(x, y))
 	return(vec2_t(-1, -1))
 
-def get_tile(pixels, x ,y):
+def get_tile(pixels, x, y):
 	"""Docstring..."""
 	if x < 0 or x >= 30 or y < 0 or y >= 10:
 		return(TileEmpty)
