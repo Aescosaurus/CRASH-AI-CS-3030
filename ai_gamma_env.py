@@ -20,6 +20,9 @@ class env:
 				else:
 					self.data.append( 2 ) # 2 = obstacle / kill u.
 
+		self.data.append( int( float( player_pos.x ) * ( 9.0 / 30.0 ) ) )
+		self.data.append( int( float( player_pos.y ) * ( 9.0 / 10.0 ) ) )
+
 		reward = 0
 		done = False
 		if tilemap[0][0] == obj_finder.StateDead:
@@ -49,15 +52,20 @@ class env:
 
 	def calc_state( self ):
 		s = ""
-		for item in self.data:
-			s += str( item )
-		return( int( s,3 ) )
+		for i in range( len( self.data ) - 2 ):
+			s += str( self.data[i] )
+
+		s = str( int( s,3 ) )
+		s += str( self.data[-2] )
+		s += str( self.data[-1] )
+		return( int( s ) )
 
 	def get_action_space( self ):
 		return( 3 ) # Wait, jump, dash.
 
 	def get_observation_space( self ):
-		return( 728 + 1 ) # 222222 ternary to decimal.
+		# return( 3 ** 6 + 1 ) # 222222 ternary to decimal.
+		return( 73000 + 1 )
 	
 	def get_sample_action( self ):
 		return( random.randint( 0,2 ) )
