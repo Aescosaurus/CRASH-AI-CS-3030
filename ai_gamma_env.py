@@ -49,7 +49,7 @@ class env:
 
 		return((self.calc_state(), reward, done))
 
-	def reset( self ):
+	def reset(self):
 		"""Docstring..."""
 		self.data = []
 		for i in range(2 * 3):
