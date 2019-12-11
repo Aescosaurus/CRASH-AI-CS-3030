@@ -1,4 +1,4 @@
-"""Docstring..."""
+"""Interact with the game and the game window directly."""
 import win32gui
 import win32api
 import win32con
@@ -10,7 +10,7 @@ from vec2 import vec2_t
 import ctypes
 
 def focus_window(name):
-	"""Docstring..."""
+	"""Focus on the game window."""
 	def check_window_enums(hWnd, name):
 		if name == str(win32gui.GetWindowText(hWnd)):
 			win32gui.SetForegroundWindow(hWnd)
@@ -22,25 +22,18 @@ def get_window_info():
 	details = rect_t(0, 0, 0, 0)
 
 	def callback(hWnd, extra):
-		"""Docstring..."""
+		"""Callback funtion."""
 		rect = win32gui.GetWindowRect(hWnd)
 
 		if win32gui.GetWindowText(hWnd) == "Cave Runner Actual Sharp Hustle":
 			crect = ctypes.wintypes.RECT()
 			DWMWA_EXTENDED_FRAME_BOUNDS = 9
 			ctypes.windll.dwmapi.DwmGetWindowAttribute(
-				# ctypes.wintypes.HWND(self.GetHandle()),
 				hWnd,
 				ctypes.wintypes.DWORD(DWMWA_EXTENDED_FRAME_BOUNDS),
 				ctypes.byref(crect),
 				ctypes.sizeof(crect))
-			# print( rect_t( crect.left,
-			# 	 crect.right,crect.top,crect.bottom ) )
 
-			# extra.left = rect[0]
-			# extra.top = rect[1]
-			# extra.right = rect[2]
-			# extra.bot = rect[3]
 			if crect.left >= 0:
 				extra.left = crect.left + 1
 				extra.top = crect.top + 1 + 30
@@ -52,7 +45,7 @@ def get_window_info():
 	return(details)
 
 def get_pixel(x, y):
-	"""Docstring..."""
+	"""Get the pixel at the location x, y."""
 	pos = local_to_global(vec2_t(x,y))
 	x = pos.x
 	y = pos.y
@@ -86,7 +79,7 @@ def click_start():
 	click_at(200, 400)
 
 def press_key(key):
-	"""Docstring..."""
+	"""Press key"""
 	press_key.kbd = Controller()
 
 	press_key.kbd.press(key)
@@ -94,7 +87,7 @@ def press_key(key):
 	press_key.kbd.release(key)
 
 def press_jump():
-	"""Docstring..."""
+	"""Press jump key."""
 	press_key('w')
 
 def press_dash():
@@ -102,22 +95,11 @@ def press_dash():
 	press_key( 'd' )
 
 def local_to_global( vec2 ):
-	"""Docstring..."""
+	"""Convert local coordinates to global coordinates."""
 	local_to_global.window_rect = get_window_info()
 	x = vec2.x + local_to_global.window_rect.left
 	y = vec2.y + local_to_global.window_rect.top
-	# Dumb window top left stuff.
-	# x += 8
-	# y += 31
 	return(vec2_t(x, y))
-
-"""
-window_rect = get_window_info()
-focus_window( "Cave Runner Actual Sharp Hustle" )
-time.sleep( 1 )
-click_start()
-print( "done" )
-"""
 
 if __name__ == '__main__':
 	# Get the window specifications.

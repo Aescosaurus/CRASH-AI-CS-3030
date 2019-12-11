@@ -7,9 +7,9 @@ import numpy as np
 
 
 class ai_gamma:
-	"""Docstring..."""
+	"""Gamma ai algorithm using Q Learning."""
 	def ai_start(self):
-		"""Docstring..."""
+		"""Start the ai. If making changes to Q_Table, training mode needs to be True"""
 		self.training_mode = True
 		self.env = ai_gamma_env.env()
 
@@ -42,18 +42,23 @@ class ai_gamma:
 			epsilon = 0.6
 
 			# state = self.env.reset()
+
+			# Initialize state.
 			state = self.env.step(0, tilemap)[0]
 			reward = 0.0
 
+			# Decide whether or not to try something new.
 			if random.uniform(0.0, 1.0) < epsilon:
 				action = self.env.get_sample_action()
 			else:
 				action = np.argmax(self.q_table[state])
 
+			# Run step action.
 			step_info = self.env.step(action, tilemap)
 			next_state = step_info[0]
 			reward = step_info[1]
 
+			# Modify Q_Table.
 			old_value = self.q_table[state, action]
 			next_max = np.max(self.q_table[next_state])
 
@@ -61,17 +66,15 @@ class ai_gamma:
 						(alpha * (reward + gamma * next_max))
 
 			self.q_table[state, action] = new_value
-
-			# print("aaaa", old_value, new_value)
-
 			self.state = next_state
+
 			pass
 		else:
 			pass
 		pass
 
 	def ai_lose( self ):
-		"""print(self.q_table)"""
+		"""Write the Q_table to a file."""
 		file = open("Data/AiGammaQTable.txt",'w')
 		for i in self.q_table:
 			for j in i:

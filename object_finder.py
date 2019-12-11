@@ -1,4 +1,4 @@
-"""Docstring..."""
+"""Find objects in the game window using tile map."""
 import game_interaction as game
 from color import color_t
 from vec2 import vec2_t
@@ -27,13 +27,14 @@ colors = \
 	]
 
 def match_color(col):
-	"""Docstring..."""
+	"""Match the color of the tiles."""
 	for i in range(len(colors)):
 		if colors[i].equals(col):
 			return(i)
 	return(0)
 
 def find_everything():
+	"""Find everything in the tile map."""
 	# t = time.perf_counter()
 	image = ImageGrab.grab().load()
 	window = game.get_window_info()
@@ -49,7 +50,7 @@ def find_everything():
 	return(color_arr)
 
 def find_player(colors):
-	"""Docstring..."""
+	"""FInd the player using the tile map and colors."""
 	for y in range(len(colors)):
 		for x in range(len(colors[y])):
 			if colors[y][x] == TilePlayer:
@@ -57,7 +58,7 @@ def find_player(colors):
 	return(vec2_t(-1, -1))
 
 def find_explosion(colors):
-	"""Docstring..."""
+	"""Find the explostions using the tile map and colors."""
 	for y in range(len(colors)):
 		for x in range(len(colors[y])):
 			if colors[y][x] == TileExplode:
@@ -65,7 +66,7 @@ def find_explosion(colors):
 	return(vec2_t(-1, -1))
 
 def get_tile(pixels, x, y):
-	"""Docstring..."""
+	"""Get the tile on the tile maps."""
 	if x < 0 or x >= 30 or y < 0 or y >= 10:
 		return(TileEmpty)
 	return(pixels[y][x])
