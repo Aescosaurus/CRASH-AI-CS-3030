@@ -48,8 +48,12 @@ def update(dt):
 		ai.ai_lose()
 		return(False)
 
-for i in range(500):
-	print(start())
+def start_playing():
+	for i in range(500):
+		print(start())
+
+if __name__ == '__main__':
+	start_playing()
 # times = []
 # for i in range( 100 ):
 # 	times.append( start() )
