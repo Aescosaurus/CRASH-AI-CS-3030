@@ -62,7 +62,7 @@ def update(dt):
 
 def start_playing():
 	"""Start playing for range(x) amount of iterations."""
-	for i in range(500):
+	for i in range(5000):
 		print(start())
 
 if __name__ == '__main__':

@@ -40,9 +40,10 @@ class env:
 			reward += 5
 
 		if action == 0:
-			reward += 1
+			# reward += 1
 			pass
 		elif action == 1:
+			reward += 1
 			game.press_jump()
 		elif action == 2:
 			game.press_dash()
