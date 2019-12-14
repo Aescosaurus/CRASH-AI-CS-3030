@@ -22,7 +22,7 @@ class ai_delta:
 		
 		print( "Set up initial ai." )
 		if self.evolution_mode:
-			gen_size = 3 # From 5.
+			gen_size = 5
 			gen_deviation = 0.2
 			self.ais = []
 			self.rewards = []

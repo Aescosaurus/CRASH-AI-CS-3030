@@ -66,7 +66,7 @@ def update(dt):
 def start_playing():
 	"""Start playing for range(x) amount of iterations."""
 	for i in range( 50000 ):
-		print( "Time: " + str( start() ) )
+		print( "Trial: " + str( i ) + " Time: " + str( start() ) )
 
 def write_times_to_file():
 	times = []
