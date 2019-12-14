@@ -80,16 +80,22 @@ class ai_gamma:
 			self.state = next_state
 
 			self.last_action = action
+			
+			return( reward )
 			pass
 		elif tile_below == obj_finder.TileWall \
 			or tilemap[0][0] == obj_finder.StateDead:
-			state = self.env.step(0, tilemap)[0]
+			info = self.env.step(0, tilemap)
+			state = info[0]
+			reward = info[1]
 			action = np.argmax(self.q_table[state])
 			self.env.step(action, tilemap)
+
+			return( reward )
 			pass
 		pass
 
-	def ai_lose( self ):
+	def ai_lose( self,time ):
 		"""Write the Q_table to a file."""
 		file = open("Data/AiGammaQTable.txt",'w')
 		for i in self.q_table:

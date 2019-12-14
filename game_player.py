@@ -3,11 +3,11 @@ import game_interaction as game
 import time
 import object_finder as obj_finder
 import threading
-import ai_gamma
+from ai_delta import ai_delta
 
 # Set initial game window and ai values.
 window_name = "Cave Runner Actual Sharp Hustle"
-ai = ai_gamma.ai_gamma()
+ai = ai_delta()
 
 def start():
 	"""Focus on the game window, track time, and perform update loop."""
@@ -33,6 +33,9 @@ def start():
 
 	# Return time.
 	total_time = end_time - start_time
+
+	ai.ai_lose( total_time )
+
 	return(total_time)
 
 def update(dt):
@@ -57,13 +60,13 @@ def update(dt):
 		return(True)
 	else:
 		# If not alive, call ai.lose().
-		ai.ai_lose()
+		# ai.ai_lose()
 		return(False)
 
 def start_playing():
 	"""Start playing for range(x) amount of iterations."""
-	for i in range(5000):
-		print(start())
+	for i in range(50000):
+		print( "Time: " + str( start() ) )
 
 if __name__ == '__main__':
 	start_playing()

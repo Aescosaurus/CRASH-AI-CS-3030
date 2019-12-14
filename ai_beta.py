@@ -14,6 +14,6 @@ class ai_beta:
         """Docstring..."""
 		pass
 
-	def ai_lose(self):
+	def ai_lose(self,time):
         """Docstring..."""
 		pass
