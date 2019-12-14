@@ -65,12 +65,8 @@ def update(dt):
 
 def start_playing():
 	"""Start playing for range(x) amount of iterations."""
-	for i in range(50000):
+	for i in range( 50000 ):
 		print( "Time: " + str( start() ) )
-
-if __name__ == '__main__':
-	start_playing()
-	# write_times_to_file()
 
 def write_times_to_file():
 	times = []
@@ -82,6 +78,11 @@ def write_times_to_file():
 		text += str( t )
 		text += '\n'
 
-	file = open( "Data/AiAlpha.txt",'w' )
+	file = open( "Data/AiDelta1000Times.txt",'w' )
 	file.write( text )
 	file.close()
+
+if __name__ == '__main__':
+	start_playing()
+	# write_times_to_file()
+	pass

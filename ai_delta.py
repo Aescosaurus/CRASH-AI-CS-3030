@@ -7,7 +7,7 @@ import os.path
 
 class ai_delta:
 	def __init__( self ):
-		self.evolution_mode = False
+		self.evolution_mode = True
 		init_ai = ai_gamma()
 		init_ai.ai_start()
 
