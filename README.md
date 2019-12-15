@@ -96,7 +96,22 @@ jumping and dashing, and provide three basic options:
   To Do:
   
   AI starts its own timer to record success of the run
-  write three distinct AI algorithms
+  
+  write three distinct AI algorithms:
+  
+    AiAlpha.py
+    
+    AiBeta.py
+    
+    AiGamma.py
+  
+  Write python graphing program using matplotlib to graph AI Test Run Comparisons for:
+  
+    AiAlpha.txt
+    
+    AiDelta1000RandomTimes.txt
+    
+    AiGammaTimes.txt
   
 
 
