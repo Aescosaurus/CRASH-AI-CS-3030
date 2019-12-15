@@ -1,5 +1,5 @@
 """
-AiAlphGraph.py
+AiAlphaGraph.py
 Rob Standifer
 CS3030
 This program reads the data from AiAlpha.py into a list
