@@ -17,19 +17,19 @@ class ai_gamma:
 		self.q_table = np.zeros([self.env.get_observation_space(),
 								 self.env.get_action_space()])
 
-		file = open("Data/AiGammaQTable.txt",'r')
-		i = 0
-		for line in file.readlines():
-			strs = []
-			strs.append("")
-			for c in line:
-				if c == ' ':
-					strs.append("")
-				else:
-					strs[-1] += c
-			for s in range(len(strs) - 1):
-				self.q_table[i][s] = float(strs[s])
-		file.close()
+		# file = open("Data/AiGammaQTable.txt",'r')
+		# i = 0
+		# for line in file.readlines():
+		# 	strs = []
+		# 	strs.append("")
+		# 	for c in line:
+		# 		if c == ' ':
+		# 			strs.append("")
+		# 		else:
+		# 			strs[-1] += c
+		# 	for s in range(len(strs) - 1):
+		# 		self.q_table[i][s] = float(strs[s])
+		# file.close()
 		pass
 
 	def ai_step(self, tilemap, dt):

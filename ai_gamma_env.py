@@ -9,24 +9,42 @@ class env:
 
 	def __init__(self):
 		"""Docstring..."""
-		self.reset()
+		# self.reset()
+		self.x_range = range( 1,7,2 )
+		self.y_range = range( -1,4,2 )
+		self.data = []
+		for y in self.y_range:
+			for x in self.x_range:
+				self.data.append( 0 )
 
 	def step(self, action, tilemap):
 		"""Docstring..."""
 		player_pos = obj_finder.find_player(tilemap)
 
 		self.data = []
-		for y in range(player_pos.y - 1,player_pos.y + 2):
-			for x in range(player_pos.x + 1,player_pos.x + 3):
-				if obj_finder.get_tile(tilemap, x, y) == obj_finder.TileEmpty:
-					self.data.append(0)
-				elif obj_finder.get_tile(tilemap, x, y) == obj_finder.TileWall:
-					self.data.append(1)
-				else:
-					self.data.append(2) # 2 = obstacle / kill u.
+		# for y in range(player_pos.y - 1,player_pos.y + 2):
+		# 	for x in range(player_pos.x + 1,player_pos.x + 3):
+		# 		if obj_finder.get_tile(tilemap, x, y) == obj_finder.TileEmpty:
+		# 			self.data.append(0)
+		# 		elif obj_finder.get_tile(tilemap, x, y) == obj_finder.TileWall:
+		# 			self.data.append(1)
+		# 		else:
+		# 			self.data.append(2) # 2 = obstacle / kill u.
 
-		self.data.append(int(float(player_pos.x) * (9.0 / 30.0)))
-		self.data.append(int(float(player_pos.y) * (9.0 / 10.0)))
+		# self.data.append(int(float(player_pos.x) * (9.0 / 30.0)))
+		# self.data.append(int(float(player_pos.y) * (9.0 / 10.0)))
+
+		# Add proper data into array.
+		for y in self.y_range:
+			for x in self.x_range:
+				tile = obj_finder.get_tile( tilemap,
+					x + player_pos.x,y + player_pos.y )
+				if tile == obj_finder.TileEmpty:
+					self.data.append( 0 )
+				elif tile == obj_finder.TileWall:
+					self.data.append( 1 )
+				else:
+					self.data.append( 2 )
 
 		reward = 0
 		done = False
@@ -50,23 +68,13 @@ class env:
 
 		return((self.calc_state(), reward, done))
 
-	def reset(self):
-		"""Docstring..."""
-		self.data = []
-		for i in range(2 * 3):
-			self.data.append(0)
-		return(self.calc_state())
-
 	def calc_state(self):
 		"""Docstring..."""
 		s = ""
-		for i in range(len(self.data) - 2):
-			s += str(self.data[i])
+		for i in self.data:
+			s += str( i )
 
-		s = str(int(s, 3))
-		s += str(self.data[-2])
-		s += str(self.data[-1])
-		return(int(s))
+		return( int( s,3 ) )
 
 	def get_action_space(self):
 		"""Wait, jump, dash."""
@@ -75,7 +83,7 @@ class env:
 	def get_observation_space(self):
 		"""222222 ternary to decimal."""
 		# return(3 ** 6 + 1)
-		return(73000 + 1)
+		return( 3 ** len( self.data ) + 1 )
 
 	def get_sample_action(self):
 		"""Docstring..."""

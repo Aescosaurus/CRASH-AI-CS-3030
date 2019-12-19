@@ -3,11 +3,11 @@ import game_interaction as game
 import time
 import object_finder as obj_finder
 import threading
-from ai_delta import ai_delta
+from ai_gamma import ai_gamma
 
 # Set initial game window and ai values.
 window_name = "Cave Runner Actual Sharp Hustle"
-ai = ai_delta()
+ai = ai_gamma()
 
 def start():
 	"""Focus on the game window, track time, and perform update loop."""
